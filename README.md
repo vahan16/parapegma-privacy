@@ -1,7 +1,7 @@
 # Parapegma — privacy policy
 
-The published privacy policy for [Parapegma](https://parapegma.app), a trip
-planner that costs out the moving.
+The published privacy policy for **Parapegma**, a trip planner that costs out the
+moving.
 
 **https://vahan16.github.io/parapegma-privacy/**
 
