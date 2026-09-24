@@ -104,14 +104,16 @@
 <header>
   <p class="eyebrow">Parapegma</p>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated 24 August 2026</p>
+  <p class="updated">Last updated 23 September 2026</p>
 </header>
 
 <div class="lede">
   <p><strong>Parapegma has no accounts.</strong> It never asks for your name, your
   email address or your phone number, and it has no way to learn them.</p>
   <ul>
-    <li>Your trips are kept on your phone. Deleting the app deletes them.</li>
+    <li>Your trips are kept on your phone. Deleting the app deletes them
+    &mdash; unless you switch on cloud backup, which is off until you do, and
+    described in section 4.</li>
     <li>The app cannot read your location. It guesses your home city from your
     phone&rsquo;s time zone, and you can change it.</li>
     <li>Searching sends the shape of the search &mdash; cities, dates, nights,
@@ -133,10 +135,14 @@ on this page.</p>
 <p>There is no sign-up, no password, no email address and no social login.
 Nothing you do in the app is filed under a person, because the app does not
 know that a person is there.</p>
-<p>The consequence is worth stating plainly rather than burying in section 14:
+<p>The consequence is worth stating plainly rather than burying in section 15:
 we cannot show you &ldquo;your data&rdquo; on request, because there is no
 &ldquo;yours&rdquo; for it to be filed under. That is a result of collecting
 very little, not a way of avoiding the question.</p>
+<p>Cloud backup does not change this. It files your trips under a random
+number your phone invents, which is not a sign-up, carries no name and is not
+linked to anything else &mdash; see section 4. We cannot tell whose it is, and
+neither can anybody else who has not been given the number.</p>
 
 <h2><span class="n">03</span>What stays on your phone</h2>
 <p>Held in a database inside the app, readable only by the app, and sent
@@ -152,21 +158,49 @@ nowhere by us:</p>
   <li><strong>The last search you made</strong>, so that reopening the app
   resumes where you left off.</li>
 </ul>
-<p>Deleting the app deletes all of it. There is no copy of it on any server of
-ours, and no way to recover it afterwards.</p>
+<p>With cloud backup off &mdash; which is how the app arrives &mdash; deleting
+the app deletes all of it. There is no copy of it on any server of ours, and no
+way to recover it afterwards. Switching backup on is what changes that
+sentence, and section 4 is the whole of what it changes.</p>
 <p class="note">One honest caveat: your phone&rsquo;s own backup &mdash; iCloud
 on iOS, Google&rsquo;s backup on Android &mdash; may copy this database along
 with everything else it backs up. That copy is held by Apple or Google under
 their terms and controlled by you in your phone&rsquo;s settings, not by us.</p>
 
-<h2><span class="n">04</span>The app does not use GPS</h2>
+<h2><span class="n">04</span>Cloud backup, if you turn it on</h2>
+<p><strong>It is off until you switch it on</strong>, in Settings, and nothing
+described in this section happens before you do. The app shipped saying your
+trips never leave the phone; backup is an offer, not a change of mind.</p>
+<p>With it on, the app keeps a copy of what section 3 lists &mdash; your trips
+and your settings &mdash; on our worker, so that a new phone, or the same phone
+after a reinstall, can have them back. What is copied is what is on that list
+and nothing else: no name, no email address, no device identifier, no location.</p>
+<p><strong>It still has no account.</strong> The copy is filed under a random
+number your phone generates the first time you switch backup on &mdash; the
+&ldquo;recovery code&rdquo; Settings shows you. That number is the only key to
+it. Anyone who has it can read the trips filed under it, which is why it is
+worth keeping to yourself, and why it is the only thing you need in order to
+get your trips onto another phone. We cannot connect it to a person, because
+nothing that identifies one is ever attached to it.</p>
+<p>So that a reinstall can find its own backup without you having kept
+anything, the app also stores a second random number &mdash; kept in your
+phone&rsquo;s keychain, which survives deleting the app &mdash; alongside the
+first. We store only a one-way hash of it, so those records cannot be read
+backwards into a list of phones.</p>
+<p>The copy is held in Cloudflare D1, on Cloudflare&rsquo;s network, under the
+transfer terms in section 17. It stays until you delete it: <strong>Settings
+&rarr; delete my cloud backup</strong> erases every row of it, and the app then
+behaves exactly as it did before you switched backup on. Switching backup off
+stops new copies being made; deleting removes what is there.</p>
+
+<h2><span class="n">05</span>The app does not use GPS</h2>
 <p>Parapegma requests no location permission and cannot read your position,
 coarse or precise. It guesses which city you live in from your phone&rsquo;s
 time zone, matched against the cities it already knows. If the guess is wrong,
 change it in Settings &mdash; your choice is kept, and choosing a city to fly
 into never overwrites it.</p>
 
-<h2><span class="n">05</span>What a search sends</h2>
+<h2><span class="n">06</span>What a search sends</h2>
 <p>When you search for trips, the app sends one request to our planner, which
 runs on Cloudflare Workers. It contains:</p>
 <ul>
@@ -187,7 +221,7 @@ IP address, which Cloudflare sees and records as part of operating the service
 and defending it from abuse. We do not store it, and we do not attach it to
 anything.</p>
 
-<h2><span class="n">06</span>Where the search goes next</h2>
+<h2><span class="n">07</span>Where the search goes next</h2>
 <p>The planner asks other services on your behalf, so that your phone does not
 have to and so that our keys stay off it. Each is asked about places and dates.
 None of them is told anything about you, and none receives an identifier for
@@ -208,7 +242,7 @@ you or for your device &mdash; they see our server, not your phone.</p>
 </table>
 </div>
 
-<h2><span class="n">07</span>Booking links, and how the app is paid</h2>
+<h2><span class="n">08</span>Booking links, and how the app is paid</h2>
 <p>Parapegma sells nothing and takes no payment. When you tap a link to book a
 flight, a train, a ferry or a ticket, it opens that partner&rsquo;s own search
 already filled in with the route, the date and the number of travellers, and we
@@ -232,7 +266,7 @@ actually pay for it. The network&rsquo;s own record of a click also includes
 the IP address and country of whoever made it. Parapegma does not use those
 fields, does not store them, and never sends them to its analytics.</p>
 
-<h2><span class="n">08</span>Usage statistics</h2>
+<h2><span class="n">09</span>Usage statistics</h2>
 <p>Anonymous, and collected to find out which parts of the app work and which
 are ignored. They are processed by <strong>PostHog</strong>, in the United
 States. What is sent:</p>
@@ -258,7 +292,7 @@ States. What is sent:</p>
 is captured, no screen is ever recorded, and no profile is built &mdash; there
 is no identity here to build one on.</p>
 
-<h2><span class="n">09</span>Crash reports</h2>
+<h2><span class="n">10</span>Crash reports</h2>
 <p>When the app crashes, or survives an error worth knowing about, a report
 goes to <strong>Firebase Crashlytics</strong>, operated by Google: the stack
 trace, a short trail of what the app was doing beforehand, the device model,
@@ -267,14 +301,14 @@ own identifier for the installation. <strong>No user identifier is ever
 set</strong> &mdash; there is none to set. Google keeps crash reports for 90
 days.</p>
 
-<h2><span class="n">10</span>Updates</h2>
+<h2><span class="n">11</span>Updates</h2>
 <p>Parapegma updates itself in the background through Expo&rsquo;s update
 service. Checking for one sends the platform, the app&rsquo;s runtime version
 and the id of the version installed; Expo sees the IP address the check comes
 from. Nothing about your trips is involved, and an update never uploads
 anything from your phone.</p>
 
-<h2><span class="n">11</span>What is never collected</h2>
+<h2><span class="n">12</span>What is never collected</h2>
 <ul>
   <li>No name, email address, phone number or postal address.</li>
   <li>No contacts, photos, calendar, files, microphone or camera. The app asks
@@ -287,12 +321,13 @@ anything from your phone.</p>
   not as a change of plan later.</li>
 </ul>
 
-<h2><span class="n">12</span>How long things are kept</h2>
+<h2><span class="n">13</span>How long things are kept</h2>
 <div class="scroll">
 <table>
   <thead><tr><th>What</th><th>How long</th></tr></thead>
   <tbody>
     <tr><td>Trips and settings</td><td>on your phone until you delete the trip, or the app</td></tr>
+    <tr><td>Cloud backup, if you switched it on</td><td>until you delete it in Settings. It is not expired, pruned or aged out by us &mdash; a backup that quietly disappeared would be worse than none</td></tr>
     <tr><td>Usage statistics</td><td>retained by PostHog under our account&rsquo;s retention setting, currently up to seven years</td></tr>
     <tr><td>Crash reports</td><td>90 days &mdash; Crashlytics&rsquo; own limit</td></tr>
     <tr><td>Planner and provider caches</td><td>hours to days, by the kind of answer. They hold facts about places and dates, not about people</td></tr>
@@ -301,22 +336,25 @@ anything from your phone.</p>
 </table>
 </div>
 
-<h2><span class="n">13</span>Why we are allowed to do this</h2>
+<h2><span class="n">14</span>Why we are allowed to do this</h2>
 <p>For anyone in the UK or the EEA, the legal bases under the GDPR are:</p>
 <ul>
   <li><strong>Running a search you asked for</strong> &mdash; performing the
   service you requested by using the app.</li>
   <li><strong>Usage statistics and crash reports</strong> &mdash; our
   legitimate interest in knowing whether the app works and where it breaks,
-  held to the minimum described in sections 8 and 9, with no profiling, no
+  held to the minimum described in sections 9 and 10, with no profiling, no
   advertising use and no identity attached. You may object to this at the
   address in section 1.</li>
   <li><strong>Affiliate attribution</strong> &mdash; our legitimate interest in
   being paid for the work, using a reference that identifies a tap rather than
   a person.</li>
+  <li><strong>Cloud backup</strong> &mdash; your consent, given by switching it
+  on and withdrawn by deleting it, both in Settings. It is the one thing in
+  this policy that happens only because you asked for it.</li>
 </ul>
 
-<h2><span class="n">14</span>Your rights</h2>
+<h2><span class="n">15</span>Your rights</h2>
 <p>Under the UK and EU GDPR you have the right to ask for access to your
 personal data, its correction or erasure, restriction of its processing, a
 portable copy, and to object to processing based on legitimate interests. You
@@ -327,6 +365,10 @@ Information Commissioner&rsquo;s Office.</p>
   <li><strong>Everything the app knows about your travel is on your phone.</strong>
   Delete a trip to erase it, or delete the app to erase all of it at once. You
   do not need our permission and you do not need to ask.</li>
+  <li><strong>If you switched cloud backup on</strong>, the copy described in
+  section 4 is the one thing we hold that is genuinely yours &mdash; and you
+  can see it in the app and erase it from Settings, in one tap, without asking
+  us. That is access and erasure done properly, rather than by email.</li>
   <li><strong>The statistics and crash reports carry no identifier that points
   back to you</strong>, so in most cases we genuinely cannot find a particular
   person&rsquo;s records in order to show or delete them. Ask us anyway at the
@@ -336,14 +378,14 @@ Information Commissioner&rsquo;s Office.</p>
   the app; nothing is sent from a device it is not installed on.</li>
 </ul>
 
-<h2><span class="n">15</span>Children</h2>
+<h2><span class="n">16</span>Children</h2>
 <p>Parapegma is not directed at children, and is not intended for use by anyone
 under 13 &mdash; or under 16 where local law sets that age. We do not knowingly
 collect anything from a child. Because there are no accounts, we have no way to
 verify anybody&rsquo;s age, which is one more reason the app collects as little
 as it does.</p>
 
-<h2><span class="n">16</span>Where the data goes</h2>
+<h2><span class="n">17</span>Where the data goes</h2>
 <p>The services in this policy process data in the United States (PostHog,
 Google and Expo) and on Cloudflare&rsquo;s global network, which may route a
 request through any country it operates in. Where personal data leaves the UK
@@ -351,19 +393,19 @@ or the EEA, those transfers rely on the European Commission&rsquo;s Standard
 Contractual Clauses and the UK International Data Transfer Addendum, as
 incorporated into each provider&rsquo;s terms.</p>
 
-<h2><span class="n">17</span>Changes to this policy</h2>
+<h2><span class="n">18</span>Changes to this policy</h2>
 <p>The date at the top of the page says when it last changed. If what leaves
 the app ever changes materially, this page changes first &mdash; a new provider
 or a new kind of data is a change to these words, not a footnote to them.</p>
 
-<h2><span class="n">18</span>Contact</h2>
+<h2><span class="n">19</span>Contact</h2>
 <p>Questions, objections, or anything on this page that does not match what you
 observe the app doing:
 <a href="mailto:vambranstudio@gmail.com">vambranstudio@gmail.com</a>.</p>
 
 <footer>
   <p>Parapegma &mdash; a trip planner that costs out the moving.<br>
-  Vambran Studio &middot; 24 August 2026</p>
+  Vambran Studio &middot; 23 September 2026</p>
 </footer>
 
 </main>
